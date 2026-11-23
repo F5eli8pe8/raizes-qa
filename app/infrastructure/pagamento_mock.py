@@ -12,6 +12,7 @@ class PagamentoMock:
     def __init__(self, cenario: str = "aprovado"):
         self.cenario = cenario
         self.chamadas: list[tuple[str, int, str]] = []
+        self.estornos: list[str] = []
         self._resultados: dict[str, ResultadoPagamento] = {}
 
     @property
@@ -38,3 +39,7 @@ class PagamentoMock:
             resultado = ResultadoPagamento.RECUSADO
         self._resultados[chave_idempotencia] = resultado
         return resultado
+
+    def estornar(self, pedido_id: str) -> None:
+        if pedido_id not in self.estornos:
+            self.estornos.append(pedido_id)

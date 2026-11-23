@@ -16,3 +16,7 @@ class CancelamentoNegado(DominioErro):
 
 class TransicaoInvalida(DominioErro):
     pass
+
+
+class PagamentoRecusado(DominioErro):
+    pass
